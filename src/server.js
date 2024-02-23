@@ -1,10 +1,11 @@
-import express from 'express'; 
+import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import cors from 'cors'; 
+import cors from 'cors';
+import path from 'path';
 
 const app = express();
-app.use(cors()); 
+app.use(cors());
 const port = 3000;
 
 // Conexión a MongoDB
@@ -20,7 +21,7 @@ db.once('open', () => {
 const pedidoSchema = new mongoose.Schema({
   nombreCliente: String,
   producto: String,
-  cantidad: String
+  cantidad: String,
 });
 
 const Pedido = mongoose.model('Pedido', pedidoSchema);
@@ -29,39 +30,42 @@ const Pedido = mongoose.model('Pedido', pedidoSchema);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
+// Ruta para enviar el archivo HTML
+const htmlPath = path.join("/API-GROCERIES-Jquery/", 'src', 'home.html');
+app.get('/', (req, res) => {
+  res.sendFile(htmlPath);
+});
 
 // Endpoint para crear un nuevo pedido
 app.post('/api/pedidos', async (req, res) => {
-    try {
-        const nuevoPedido = new Pedido(req.body);
-        const pedidoGuardado = await nuevoPedido.save();
-        res.json(pedidoGuardado);
-    } catch (error) {
-        res.status(500).send(error);
-    }
+  try {
+    const nuevoPedido = new Pedido(req.body);
+    const pedidoGuardado = await nuevoPedido.save();
+    res.json(pedidoGuardado);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 // Endpoint para obtener todos los pedidos
 app.get('/api/pedidos', async (req, res) => {
-    try {
-        const pedidos = await Pedido.find({});
-        res.json(pedidos);
-    } catch (error) {
-        res.status(500).send(error);
-    }
+  try {
+    const pedidos = await Pedido.find({});
+    res.json(pedidos);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 // Endpoint para eliminar un pedido por ID
 app.delete('/api/pedidos/:id', async (req, res) => {
-    try {
-        const pedidoEliminado = await Pedido.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Pedido eliminado correctamente', pedido: pedidoEliminado });
-    } catch (error) {
-        res.status(500).send(error);
-    }
+  try {
+    const pedidoEliminado = await Pedido.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Pedido eliminado correctamente', pedido: pedidoEliminado });
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
-
 
 // Iniciar el servidor
 app.listen(port, () => {
