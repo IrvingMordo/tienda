@@ -8,7 +8,7 @@ app.use(cors());
 const port = 3000;
 
 // Conexión a MongoDB
-mongoose.connect('mongodb+srv://Mordo26:irving@cluster0.xnyisdd.mongodb.net/productDb?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect('mongodb+srv://hazielortiz04:022124Haziel@cluster0.ewjuf1n.mongodb.net/productDb?retryWrites=true&w=majority');
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Error de conexión a MongoDB:'));
