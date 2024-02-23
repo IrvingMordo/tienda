@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio</title>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<!-- Página 1 - Home -->
+<div data-role="page" id="home">
+  <div data-role="header" style="background-color: #8B4513; color: white;">
+    <h1>Coffee Co</h1>
+  </div>
+
+  <div data-role="content" class="ui-content-padding" style="background-color: #D2B48C;">
+    <h2 style="text-align: center;">Bienvenido a el mejor lugar</h2>
+    
+    <img src="../img/cafe.avif" alt="imagenInicio" style="max-width: 80%; height: auto; margin: 10px auto; display: block;">
+    
+    <div class="ui-body ui-body-a">
+      <p style="color: #5C4735;">Vive la experiencia de tomar el mejor café que vas a probar en tu mestiza vida.</p>
+    </div>
+
+    <div class="ui-body ui-body-a" style="background-color: #5C4735; color: #D2B48C; padding: 10px;">
+      <h3>Acerca de nosotros</h3>
+      <p>Somos un equipo de trabajo bien chido, el equipo busca la satisfacción del cliente a casi cualquier costo.</p>
+    </div>
+    
+    <a href="#comida" data-role="button" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-mini" style="background-color: #8B4513; color: white;">Ver Menú</a>
+    <a href="#pedidos" data-role="button" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-mini" style="background-color: #8B4513; color: white;">Realizar Pedido</a>
+  </div>
+
+  <div data-role="footer" class="ui-footer" style="background-color: #8B4513; color: white;">
+    <h4 style="text-align: center;">Footer</h4>
+  </div>
+</div>
+
+<!-- Página 2 - Comida -->
+<div data-role="page" id="comida">
+  <div data-role="header" style="background-color: #8B4513; color: white;">
+    <h1>Coffee Co</h1>
+  </div>
+
+  <div data-role="content" class="ui-content-padding" style="background-color: #D2B48C;">
+    <h2 style="text-align: center;">Este menú esta como para chuparse los dedos</h2>
+    
+    <img src="../img/terraza.jpg" alt="Imagen de Comida" style="max-width: 80%; height: auto; margin: 10px auto; display: block;">
+    
+    <div class="ui-body ui-body-a">
+      <p style="color: #5C4735;">¡Maybe se ve raro pero esta sabroso, tu prueba y degusta los mejores platillos.!</p>
+    </div>
+
+    <div class="ui-body ui-body-a" style="background-color: #5C4735; color: #D2B48C; padding: 10px;">
+      <h3>Nuestro Menú</h3>
+      <ul>
+        <li>
+          Potresito sabroson!
+          <div class="menu-image-container">
+            <img src="../img/postresito.jpg" alt="Imagen de Postre 1" style="max-width: 100%; height: auto;">
+          </div>
+        </li>
+        <li>
+          Cafesito medio cargado
+          <div class="menu-image-container">
+            <img src="../img/cafe.avif" alt="Imagen de Café 1" style="max-width: 100%; height: auto;">
+          </div>
+        </li>
+        <li>
+          Mi especialidad
+          <div class="menu-image-container">
+            <img src="../img/tazaMenu.jpeg" alt="Imagen de Especialidad 1" style="max-width: 100%; height: auto;">
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <a href="#home" data-role="button" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-mini" style="background-color: #8B4513; color: white;">Inicio</a>
+    <a href="#pedidos" data-role="button" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-mini" style="background-color: #8B4513; color: white;">Pedidos</a>
+  </div>
+
+  <div data-role="footer" class="ui-footer" style="background-color: #8B4513; color: white;">
+    <h4 style="text-align: center;">Footer</h4>
+  </div>
+</div>
+
+<!-- Página 3 - Pedidos -->
+<div data-role="page" id="pedidos">
+  <div data-role="header" style="background-color: #8B4513; color: white;">
+    <h1>Coffee Co</h1>
+  </div>
+
+  <div data-role="content" class="ui-content-padding" style="background-color: #D2B48C;">
+    <h2 style="text-align: center;">Realiza tu pedido con Miguel</h2>
+
+    <img src="../img/pedido.jpg" alt="imagenPedidos" style="max-width: 80%; height: auto; margin: 10px auto; display: block;">
+
+    <div class="ui-body ui-body-a">
+      <p style="color: #5C4735;">Explora nuestra sección de pedidos y descubre una variedad de opciones irresistibles. Realiza tu pedido ahora mismo y deja que nosotros nos encarguemos del resto.</p>
+
+      <form id="formularioPedido">
+        <label for="nombreCliente">Nombre del Cliente:</label>
+        <input type="text" id="nombreCliente" name="nombreCliente" required>
+
+        <label for="producto">Producto:</label>
+        <!-- Estilo para adaptar el select a la pantalla del celular -->
+        <select id="producto" name="producto" data-mini="true">
+          <!-- Agrega tus opciones de productos aquí -->
+          <option value="postresito">Potresito sabroson!</option>
+          <option value="cafesito">Cafesito medio cargado</option>
+          <option value="especialidad">Mi especialidad</option>
+        </select>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" min="1" value="1">
+        <p>El boton en rojo es para eliminar el pedido</p>
+        <input type="submit" value="Realizar Pedido" data-role="button" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-mini" style="background-color: #8B4513; color: white;">
+      </form>
+
+      <!-- Lista de pedidos -->
+      <ul data-role="listview" id="listaPedidos" data-inset="true">
+        <!-- La lista de pedidos se mostrará aquí -->
+      </ul>
+    </div>
+
+    <!-- Botones de navegación -->
+    <div data-role="footer" class="ui-footer" style="background-color: #8B4513; color: white;">
+      <a href="#home" data-role="button" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-mini" style="background-color: #8B4513; color: white;">Inicio</a>
+      <a href="#comida" data-role="button" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-mini" style="background-color: #8B4513; color: white;">Comida</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).on("pageinit", "#pedidos", function () {
+    var pedidos = [];
+
+    $("#formularioPedido").submit(function (event) {
+      event.preventDefault();
+
+      var nombreCliente = $("#nombreCliente").val();
+      var producto = $("#producto").val();
+      var cantidad = $("#cantidad").val();
+
+      if (!nombreCliente || !producto) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+
+      // Enviar el pedido al servidor
+      fetch("http://localhost:3000/api/pedidos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreCliente, producto, cantidad }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Pedido enviado exitosamente:", data);
+        cargarPedidos();
+        $("#formularioPedido")[0].reset();
+      })
+      .catch(error => {
+        console.error("Error al enviar el pedido:", error);
+      });
+    });
+
+    function cargarPedidos() {
+      // Limpiar la lista
+      $("#listaPedidos").empty();
+
+      // Obtener la lista de pedidos desde el servidor
+      fetch("http://localhost:3000/api/pedidos")
+      .then(response => response.json())
+      .then(data => {
+        pedidos = data;
+        // Mostrar cada pedido en la lista
+        pedidos.forEach(function (pedido, index) {
+          $("#listaPedidos").append(
+            "<li>" +
+            "<h3>" + pedido.nombreCliente + "</h3>" +
+            "<p>Producto: " + pedido.producto + "<br>Cantidad: " + pedido.cantidad + "</p>" +
+            "<a href='#' class='eliminarPedido' data-index='" + index + "' style='background-color: #FF6347; color: white;'>Eliminar</a>" +
+            "</li>"
+          );
+        });
+        $("#listaPedidos").listview("refresh");
+      })
+      .catch(error => {
+        console.error("Error al obtener la lista de pedidos:", error);
+      });
+    }
+
+    // Evento para eliminar un pedido
+    $(document).on("click", ".eliminarPedido", function () {
+      var index = $(this).data("index");
+      var idPedido = pedidos[index]._id;
+
+      // Enviar solicitud al servidor para eliminar el pedido
+      fetch(`http://localhost:3000/api/pedidos/${idPedido}`, {
+        method: "DELETE",
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Pedido eliminado exitosamente:", data);
+        cargarPedidos();
+      })
+      .catch(error => {
+        console.error("Error al eliminar el pedido:", error);
+      });
+    });
+
+    cargarPedidos();
+  });
+</script>
+</body>
+</html>
