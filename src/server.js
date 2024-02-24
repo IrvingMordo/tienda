@@ -1,8 +1,10 @@
+// server.js
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
+import ejs from 'ejs';
 
 const app = express();
 app.use(cors());
@@ -17,6 +19,19 @@ db.once('open', () => {
   console.log('Conexión exitosa a MongoDB');
 });
 
+// Configuración del motor de vistas EJS
+app.set('views', path.join('home.ejs'));
+app.set('view engine', 'ejs');
+
+// Middleware para analizar el cuerpo de las solicitudes
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Ruta para renderizar el archivo EJS
+app.get('/', (req, res) => {
+  res.render('home');
+});
+
 // Definir el esquema del modelo para los pedidos
 const pedidoSchema = new mongoose.Schema({
   nombreCliente: String,
@@ -25,16 +40,6 @@ const pedidoSchema = new mongoose.Schema({
 });
 
 const Pedido = mongoose.model('Pedido', pedidoSchema);
-
-// Middleware para analizar el cuerpo de las solicitudes
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// Ruta para enviar el archivo HTML
-const htmlPath = path.join("/API-GROCERIES-Jquery/", 'src', 'home.html');
-app.get('/', (req, res) => {
-  res.sendFile(htmlPath);
-});
 
 // Endpoint para crear un nuevo pedido
 app.post('/api/pedidos', async (req, res) => {
